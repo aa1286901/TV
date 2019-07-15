@@ -11,7 +11,9 @@
 		<div id="player"></div>
 
 <script>
-   var player = new Playerjs({id:"player", file:"video.mp4"});
+   var player = new Playerjs({...});
+console.log(player.api("id"));
+player.api("play");
 </script>
         </body>
 	
