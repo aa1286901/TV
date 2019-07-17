@@ -12,14 +12,27 @@
 
 <script>
   // var player = new Playerjs({id:"player", file:"https://live-hls-tvplusonline.cdnvideo.ru/matchtv/index.m3u8?md5=7IF774YV06i5YAgmAW23eQ&e=1563306243"});
-  var req = new XMLHttpRequest();
+getElement('https://www.tvplusonline.ru/tv/tvguide.txt', 'pre', function(element) {
+    console.log(element);
+});
 
-req.open('GET', 'https://www.tvplusonline.ru/tv/tvguide.txt', false);
-req.send(null);
+function getElement(url, selector, c) {
+    request(new XMLHttpRequest());
 
-if(req.status == 200) {
-   alert(req.responseText);
-}	
+    function request(xhr) {
+        xhr.open('GET', 'https://crossorigin.me/' + url, true);
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                if(xhr.status == 200) {
+                    html = document.createElement('div');
+                    html.innerHTML = xhr.responseText;
+                    c(html.querySelector(selector));
+                }
+            }
+        }
+    }
+}
 </script>
         </body>
 	
