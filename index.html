@@ -13,15 +13,13 @@
 <script>
   // var player = new Playerjs({id:"player", file:"https://live-hls-tvplusonline.cdnvideo.ru/matchtv/index.m3u8?md5=7IF774YV06i5YAgmAW23eQ&e=1563306243"});
 
-function RequestPage()
-{
-    var req = new XMLHttpRequest();
-    req.open('GET', 'http://www.google.com', true);
-    req.send(null);
-    if(req.status == 200)
-    {
-        document.getElementById("demo").innerHTML = 'Success';
-    }
+var req = new XMLHttpRequest();
+
+req.open('GET', 'http://www.google.com', true);
+req.send(null);
+
+if(req.status == 200) {
+   alert(req.responseText);
 }
 </script>
         </body>
