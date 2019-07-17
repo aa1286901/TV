@@ -12,27 +12,16 @@
 
 <script>
   // var player = new Playerjs({id:"player", file:"https://live-hls-tvplusonline.cdnvideo.ru/matchtv/index.m3u8?md5=7IF774YV06i5YAgmAW23eQ&e=1563306243"});
-getElement('https://www.tvplusonline.ru/tv/tvguide.txt', 'pre', function(element) {
-    console.log(element);
-});
 
-function getElement(url, selector, c) {
-    request(new XMLHttpRequest());
-
-    function request(xhr) {
-        xhr.open('GET', 'https://www.tvplusonline.ru/tv/tvguide.txt/' , true);
-        xhr.send();
-        xhr.onreadystatechange = function() {
-            if(xhr.readyState == 4) {
-                if(xhr.status == 200) {
-                    html = document.createElement('div');
-                    html.innerHTML = xhr.responseText;
-                    c(html.querySelector(selector));
-                }
-            }
-        }
+	
+	var http = new XMLHttpRequest();
+  http.open('GET', 'https://www.tvplusonline.ru/tv/tvguide.txt/', true);  // составить асинхронный (по умолчанию true) GET запрос страницы
+  http.onreadystatechange = function () {  // обратная связь: отдаёт ответ на запрос
+    if (this.readyState == 4 && this.status == 200) {  // отследить момент, когда пришёл полный ответ
+      alert( this.responseText );  // this.responseText — ответ в виде текста
     }
-}
+  }
+  http.send();  // отправить запрос
 </script>
         </body>
 	
