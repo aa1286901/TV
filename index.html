@@ -1,37 +1,41 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>TV Online</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<script src="https://aa1286901.github.io/TV/playerjs.js" type="text/javascript"></script>
+<head>
+	<title>TV Online</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<script src="https://aa1286901.github.io/TV/playerjs.js" type="text/javascript"></script>
 		
-	</head>
-        <body>
-		<div id="player"></div>
-
+</head>
+<body>	
+<div id="player"></div>
 <script>
   // var player = new Playerjs({id:"player", file:"https://live-hls-tvplusonline.cdnvideo.ru/matchtv/index.m3u8?md5=7IF774YV06i5YAgmAW23eQ&e=1563306243"});
 </script>
-		
-<?php 
-
-$file = curl_init('https://www.tvplusonline.ru/tv/tvguide.txt');
-
-// Настройка cURL до выполнении операции считывания
-curl_setopt($file, CURLOPT_RETURNTRANSFER, true); // устанавливаем true, для получения содержимого в переменную, вместо вывода в браузер
-curl_setopt($file, CURLOPT_HEADER, false); // отключить вывод заголовка в содержимом
-curl_setopt($file, CURLOPT_FOLLOWLOCATION, true); // следовать редиректу, если сервер пытается перенаправить посетителя
-curl_setopt($file, CURLOPT_MAXREDIRS, 5); // максимальное кол-во редиректо
-
-// Выполнение операции считывания и получение результата
-$data = curl_exec($file); // получаем содержимое (если страница - html-код, если картинка - код картинки и т.п.)
-$code = curl_getinfo($file, CURLINFO_HTTP_CODE); // получаем код ответа сервера (200, 500 и др.)
-$type = curl_getinfo($file, CURLINFO_CONTENT_TYPE); // получает тип передаваемого содержимого (text/html, jpeg/image и др.)
-
-curl_close($file);	 
-?>
-		
-        </body>
 	
+<?php
+$ch = curl_init('https://www.tvplusonline.ru/tv/tvguide.txt');
+// получать заголовки
+// curl_setopt ($ch, CURLOPT_HEADER, 1); 
+// если ведется проверка HTTP User-agent, то передаем один из возможных допустимых вариантов:
+// curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:41.0) Gecko/20100101 Firefox/41.0");
+// елси проверятся откуда пришел пользователь, то указываем допустимый заголовок HTTP Referer:
+ 
+curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+// не проверять Host SSL сертификата
+curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+// это необходимо, чтобы cURL не высылал заголовок на ожидание
+ curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: text/xml;charset="utf-8"")); 
+// выполнить запрос
+curl_exec ($ch);
+// получить результат работы
+$result = curl_multi_getcontent ($ch);
+// вывести результат
+//echo  iconv("UTF-8","windows-1251//IGNORE", $result); 
+echo $result; 
+// закрыть сессию работы с cURL
+curl_close ($ch);
+?>	
+	
+</body>	
 </html>
