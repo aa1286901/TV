@@ -15,7 +15,7 @@
 
 	
 	var http = new XMLHttpRequest();
-  http.open('GET', 'https://www.tvplusonline.ru/tv/tvguide.txt/', true);  // составить асинхронный (по умолчанию true) GET запрос страницы
+  http.open('GET', 'https://www.tvplusonline.ru/tv/tvguide.txt/', false);  // составить асинхронный (по умолчанию true) GET запрос страницы
   http.onreadystatechange = function () {  // обратная связь: отдаёт ответ на запрос
     if (this.readyState == 4 && this.status == 200) {  // отследить момент, когда пришёл полный ответ
       alert( this.responseText );  // this.responseText — ответ в виде текста
