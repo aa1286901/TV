@@ -14,9 +14,9 @@
   // var player = new Playerjs({id:"player", file:"https://live-hls-tvplusonline.cdnvideo.ru/matchtv/index.m3u8?md5=7IF774YV06i5YAgmAW23eQ&e=1563306243"});
 </script>
 		
-	<?php 
-      echo "
-	$file = curl_init('https://www.tvplusonline.ru/tv/tvguide.txt');
+<?php 
+
+$file = curl_init('https://www.tvplusonline.ru/tv/tvguide.txt');
 
 // Настройка cURL до выполнении операции считывания
 curl_setopt($file, CURLOPT_RETURNTRANSFER, true); // устанавливаем true, для получения содержимого в переменную, вместо вывода в браузер
@@ -29,9 +29,8 @@ $data = curl_exec($file); // получаем содержимое (если с�
 $code = curl_getinfo($file, CURLINFO_HTTP_CODE); // получаем код ответа сервера (200, 500 и др.)
 $type = curl_getinfo($file, CURLINFO_CONTENT_TYPE); // получает тип передаваемого содержимого (text/html, jpeg/image и др.)
 
-curl_close($file);	
-"; 
-      ?>
+curl_close($file);	 
+?>
 		
         </body>
 	
