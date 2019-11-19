@@ -4,7 +4,7 @@
 </head>
 <body>	
 <?php
-$t = $_GET['t'];
+$t = 'http://iptv.glav-noe.ru/RusIPTV.m3u';
 $text = file_get_contents( $t );
 $price =  explode("EXTINF", $text);
 $count = count($price);
