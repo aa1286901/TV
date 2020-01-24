@@ -1,5 +1,5 @@
 BEGIN:VCARD 
 VERSION:3.0
-N;CHARSET=utf-8:⚠️ TV Online не работает;;;
-ORG:Обновление выйдет на t.me/iOSshortcut;
+N;CHARSET=utf-8:❗️Доступно обновление TV+ Online;;;
+ORG:Обновляйтесь на t.me/iOSshortcut;
 END:VCARD
